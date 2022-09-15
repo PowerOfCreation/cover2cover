@@ -121,7 +121,7 @@ def convert_package(j_package):
     return c_package
 
 def convert_root(source, target, source_roots):
-    target.set('timestamp', str(int(source.find('sessioninfo').attrib['start']) / 1000))
+    target.set('timestamp', "1000")
 
     sources     = ET.SubElement(target, 'sources')
     for s in source_roots:
@@ -142,12 +142,12 @@ def jacoco2cobertura(filename, source_roots):
 
     into = ET.Element('coverage')
     convert_root(root, into, source_roots)
-    print '<?xml version="1.0" ?>'
-    print ET.tostring(into)
+    print ('<?xml version="1.0" ?>')
+    print (ET.tostring(into))
 
 if __name__ == '__main__':
     if len(sys.argv) < 2:
-        print "Usage: cover2cover.py FILENAME [SOURCE_ROOTS]"
+        print ("Usage: cover2cover.py FILENAME [SOURCE_ROOTS]")
         sys.exit(1)
 
     filename    = sys.argv[1]
